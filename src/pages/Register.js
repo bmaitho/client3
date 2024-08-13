@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './Register.css';
+import { useNavigate, Link } from 'react-router-dom';
 
 function Register() {
   const [username, setUsername] = useState('');
@@ -17,13 +16,18 @@ function Register() {
       const response = await fetch('http://127.0.0.1:5000/api/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, email, password, role_id: role === 'admin' ? 1 : 2 }) // role_id based on role
+        body: JSON.stringify({ 
+          username, 
+          email, 
+          password, 
+          role_id: role === 'admin' ? 1 : 2 // Send the correct role_id
+        })
       });
 
       const data = await response.json();
 
       if (response.ok) {
-        navigate('/login'); // Redirect to login after successful registration
+        navigate('/login'); // Navigate to login after registration
       } else {
         setError(data.error || 'Registration failed');
       }
@@ -68,6 +72,7 @@ function Register() {
         <button type="submit" className="submit-btn">Register</button>
       </form>
       {error && <p className="error">{error}</p>}
+      <p>Already have an account? <Link to="/login">Login here</Link>.</p>
     </div>
   );
 }

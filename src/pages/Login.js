@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './Login.css';
+import { useNavigate, Link } from 'react-router-dom';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -21,10 +20,11 @@ function Login() {
       const data = await response.json();
 
       if (response.ok) {
+        localStorage.setItem('token', data.token); // Store the token
         if (data.is_admin) {
-          navigate('/admin'); // Navigate to admin page if admin
+          navigate('/admin');
         } else {
-          navigate('/home'); // Navigate to home page if not admin
+          navigate('/');
         }
       } else {
         setError(data.error || 'Login failed');
@@ -55,6 +55,7 @@ function Login() {
         <button type="submit" className="submit-btn">Login</button>
       </form>
       {error && <p className="error">{error}</p>}
+      <p>Don't have an account? <Link to="/register">Register here</Link>.</p>
     </div>
   );
 }

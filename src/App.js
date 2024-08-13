@@ -9,24 +9,41 @@ import Admin from './pages/Admin';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import './App.css';
-import { authFetch } from './components/authFetch';
 
 function App() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [loading, setLoading] = useState(true); // Add loading state
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const checkAuthStatus = async () => {
       try {
-        const data = await authFetch('http://127.0.0.1:5000/api/check_admin');
-        setIsAuthenticated(true);
-        setIsAdmin(data.is_admin);
+        const token = localStorage.getItem('token');
+
+        const response = await fetch('http://127.0.0.1:5000/api/check_admin', {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          console.log('User is authenticated and role checked');
+          setIsAuthenticated(true);
+          setIsAdmin(data.is_admin);
+        } else {
+          console.log('User is not authenticated or admin check failed');
+          setIsAuthenticated(false);
+          setIsAdmin(false);
+        }
       } catch (error) {
+        console.error('Error during authentication check:', error);
         setIsAuthenticated(false);
         setIsAdmin(false);
       } finally {
-        setLoading(false); // Stop loading after check
+        setLoading(false);
       }
     };
 
@@ -34,7 +51,7 @@ function App() {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>; // Show a loading state until authentication is checked
+    return <div>Loading...</div>;
   }
 
   const ProtectedRoute = ({ children }) => {
