@@ -1,0 +1,90 @@
+/* General Admin Dashboard Styling */
+.admin-dashboard {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #ac1818; /* Bright background color */
+    color: #333; /* Text color for contrast */
+  }
+  
+  .add-project {
+    margin-bottom: 20px;
+  }
+  
+  .add-project-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    background-color: #fff; /* Form background color */
+    padding: 15px;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+  
+  .form-input {
+    flex: 1;
+    min-width: 150px;
+    margin: 5px 0;
+    padding: 10px;
+    border: 1px solid #ddd; /* Light border color */
+    border-radius: 4px; /* Rounded corners for inputs */
+  }
+  
+  .submit-btn {
+    margin-top: 10px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #4caf50; /* Button background color */
+    color: white;
+    cursor: pointer;
+  }
+  
+  .submit-btn:hover {
+    background-color: #45a049; /* Button hover color */
+  }
+  
+  .dashboard-content {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .user-list {
+    width: 45%;
+    background-color: #fff; /* Background color for user list */
+    padding: 15px;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+  
+  .recent-projects {
+    width: 45%;
+    background-color: #fff; /* Background color for recent projects */
+    padding: 15px;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+  
+  .project-details {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    background-color: #fff; /* Background color for project details */
+    padding: 15px;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+  
+  .project-image {
+    max-width: 150px;
+    margin-right: 20px;
+  }
+  
+  .project-image {
+    width: 200px; /* Adjust size as needed */
+    height: auto;
+    border-radius: 8px;
+    margin-right: 20px;
+    display: block;
+  }
+  
